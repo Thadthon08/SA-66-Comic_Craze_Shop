@@ -1,6 +1,8 @@
 import React from "react";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
+
 
 const Home = () => {
   return (
@@ -23,7 +25,9 @@ const Home = () => {
               เปิดทุกวันเพื่อให้คุณมีโอกาสลองลงไปในโลกของการ์ตูนที่น่าตื่นเต้น
               พวกเรายินดีต้อนรับคุณและหวังว่าจะได้ช่วยคุณค้นพบความสนุกของการ์ตูนไปพร้อมกัน!
             </p>
-            <button className="btn btn-primary">Get Started</button>
+            <Link to="/Products" className="btn btn-primary">
+              Get Started
+            </Link>
           </div>
         </div>
       </div>

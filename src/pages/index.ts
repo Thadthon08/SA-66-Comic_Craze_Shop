@@ -9,3 +9,4 @@ export { default as Orders } from "./Orders";
 export { default as Products } from "./Products";
 export { default as Payment } from "./Payment";
 export { default as SingleProduct } from "./SingleProduct";
+export { default as Status } from "./Status";

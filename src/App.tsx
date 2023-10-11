@@ -13,6 +13,7 @@ import {
   Products,
   Payment,
   SingleProduct,
+  Status,
 } from "./pages";
 
 const App = () => {
@@ -20,10 +21,12 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Home" element={<Home />} />
         <Route path="/Products" element={<Products />} />
         <Route path="/Products/:id" element={<SingleProduct />} />
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Payment" element={<Payment />} />
+        <Route path="/Payment/Status" element={<Status />} />
         <Route path="/About" element={<About />} />
         <Route path="/Orders" element={<Orders />} />
         <Route path="/Login" element={<Login />} />

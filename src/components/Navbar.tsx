@@ -1,7 +1,7 @@
 // import { Navbar } from "react-bootstrap";
 import { useState } from "react";
-import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
-import { FaBarsStaggered } from "react-icons/fa6";
+import { BsCart3} from "react-icons/bs";
+// import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 // import NavLinks from "./NavLinks";
 
