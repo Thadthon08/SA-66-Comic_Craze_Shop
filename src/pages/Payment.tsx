@@ -1,22 +1,26 @@
-import React from "react";
+import React, { MouseEvent, FormEvent, ChangeEvent, useState } from "react";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
-import swal from "sweetalert";
 import { Link } from "react-router-dom";
+import PaymentComponent from "../components/PaymentComponent";
 
 const Payment = () => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    sweetAlert("Suscess", "รอการยืนยันภายใน 24 ชม.", "suscess");
+  };
+  // const [value, setValue] = React.useState<Dayjs | null>(dayjs(""));
+
   return (
     <>
       <Header />
       <Navbar />
-      <div className=" flex justify-center items-center h-screen bg-base-200 w-100">
-        {/* <div className="flex"> */}
-        <div className="card w-96 p-6  bg-base-100 shadow-lg flex flex-col gap-y-1.5">
+      <div className=" flex justify-center items-center h-screen bg-base-200">
+        <div className="card w-96 p-6 bg-base-100 shadow-lg flex flex-col leading-5">
           <h4 className="text-center text-3xl font-bold border-b border-base-300 pb-2">
             ชำระเงิน
           </h4>
-          <div className="box w-100 p-2 leading-5 ">
-            <h5 className="text-lg font-bold mb-2">โอนผ่านธนาคาร 🏦</h5>
+          <div className="box">
+            <h5 className="text-lg font-bold">โอนผ่านธนาคาร 🏦</h5>
             <div className="border-b border-base-300 pb-2">
               <span>
                 <strong>บัญชีธนาคาร : </strong>กรุงเทพ <br />
@@ -25,8 +29,8 @@ const Payment = () => {
               </span>
             </div>
           </div>
-          <div className="box w-100 p-2 leading-5">
-            <h5 className="text-lg font-bold mb-2">PromptPay 💸</h5>
+          <div className="box">
+            <h5 className="text-lg font-bold ">PromptPay 💸</h5>
             <div className="border-b border-base-300 pb-2">
               <span>
                 {/* บัญชีธนาคาร : กรุงเทพ <br /> */}
@@ -35,23 +39,8 @@ const Payment = () => {
               </span>
             </div>
           </div>
-          <div className="box w-100 p-2 leading-5 ">
-            <h5 className="text-sm font-bold mb-2">
-              อัพโหลดสลิป (รูปภาพ/ภาพถ่ายเท่านั้น)
-            </h5>
-            <input
-              type="file"
-              className="file-input file-input-bordered w-full max-w-xs"
-            />
-          </div>
-          <div className="card-actions justify-center mt-2">
-            <button
-              className="btn btn-neutral  w-full max-w-xs"
-              onClick={onPick}
-            >
-              ยืนยันการชำระเงิน
-            </button>
-          </div>
+          {/* Form */}
+          <PaymentComponent />
         </div>
         <div>
           <div className="card w-96  bg-base-100 shadow-lg flex flex-col gap-y-4 ml-14">
@@ -97,7 +86,7 @@ const Payment = () => {
               <br />
               5- สามารถตรวจสอบสถานะการชำระเงินได้ที่นี้ →
               <Link
-                to="mailto:taston4411@gmail.com"
+                to="/Payment/Status"
                 className="ml-2 link link-hover link-accent"
               >
                 Click Me
@@ -107,11 +96,8 @@ const Payment = () => {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </>
   );
 };
-const onPick = () => {
-  swal("Thank you!", `รอการยืนยันภายใน 24 ชม.`, "success");
-};
+
 export default Payment;
