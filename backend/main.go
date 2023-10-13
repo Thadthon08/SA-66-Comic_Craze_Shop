@@ -14,6 +14,7 @@ func main() {
 
 	r.Use(CORSMiddleware())
 
+	//Payment 
 	r.POST("/Payment", controller.CreatePayment)
 	r.GET("/Payment/:id", controller.GetPayment)
 	r.GET("/Payments", controller.ListPayment)
@@ -21,6 +22,16 @@ func main() {
 	r.DELETE("/Payments/:id", controller.DeletePayment)
 
 	r.GET("/Statuses", controller.ListStatus)
+
+	//Admin
+	r.GET("/comics", controller.ListComics)
+	r.GET("/comics/:id", controller.GetComic)
+	r.POST("/comics", controller.CreateComic)
+	r.PATCH("/comics", controller.UpdateComic)
+	r.DELETE("/comics/:id", controller.DeleteComic)
+	// Category Routes
+	r.GET("/category", controller.ListCategory)
+	r.GET("/category/:id", controller.GetCategory)
 
 	r.Run()
 }

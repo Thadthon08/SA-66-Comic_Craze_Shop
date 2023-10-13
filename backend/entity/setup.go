@@ -41,18 +41,33 @@ func SetupDatabase() {
 
 	db = database
 
-	// Sucess := Status{
-	// 	Status: "ชำระเงินแล้ว",
-	// }
-	// db.Model(&Status{}).Create(&Sucess)
+	Sucess := Status{
+		Status: "ชำระเงินแล้ว",
+	}
+	db.Model(&Status{}).Create(&Sucess)
 
-	// Wait := Status{
-	// 	Status: "รอการตรวจสอบ",
-	// }
-	// db.Model(&Status{}).Create(&Wait)
+	Wait := Status{
+		Status: "รอการตรวจสอบ",
+	}
+	db.Model(&Status{}).Create(&Wait)
 
-	// unsuc := Status{
-	// 	Status: "ชำระเงินไม่สำเร็จ",
-	// }
-	// db.Model(&Status{}).Create(&unsuc)
+	unsuc := Status{
+		Status: "ชำระเงินไม่สำเร็จ",
+	}
+	db.Model(&Status{}).Create(&unsuc)
+	action := Category{
+		Name: "แอคชั่น",
+	}
+	db.Model(&Category{}).Create(&action)
+
+	drama := Category{
+		Name: "ดราม่า",
+	}
+	db.Model(&Category{}).Create(&drama)
+	admin := Admin{
+		Email : "t@gmail.com",
+		Password: "1234",
+	}
+	db.Model(&Admin{}).Create(&admin)
+	
 }

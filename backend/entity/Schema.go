@@ -72,15 +72,25 @@ type Member struct {
 	Username string
 	Password string
 
+	Gender_id *uint
+	Gender Gender  	`gorm:"references:id"`
 	Basket []Basket `gorm:"foreignKey:Member_id"`
+}
+
+type Gender struct {
+	gorm.Model
+	Name string
+
+	Member []Member `gorm:"foreignKey:Gender_id"`
+
 }
 
 type Comic struct {
 	gorm.Model
 	Image string  `gorm:"type:longtext"`
-	Titel string
+	Title string
 	Description string
-	Link string 
+	Url string 
 	Price float64
 
 	Category_id *uint
@@ -96,7 +106,7 @@ type Comic struct {
 
 type Category struct {
 	gorm.Model
-	Nametype string
+	Name string
 	
 	Comic []Comic `gorm:"foreignKey:Category_id"`
 
@@ -105,7 +115,6 @@ type Category struct {
 type Review struct {
 	gorm.Model
 	Comment string
-	Date time.Time
 
 	Comic_id *uint
 	Comic Comic  `gorm:"references:id"`
