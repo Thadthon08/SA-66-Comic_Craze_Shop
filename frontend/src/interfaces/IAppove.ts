@@ -6,13 +6,13 @@ export interface AppoveInterface {
     ID ?: number,
     Note ?: string,
 
-    Admin_id ?: number,
+    AdminID ?: number,
     Admin?: AdminInterface,
 
-    Payment_id ?: number,
+    PaymentID ?: number,
     Payment?: PaymentInterface,
 
-    Status_id ?: number,
+    StatusID ?: number,
     Status ?: StatusInterface
 
 }

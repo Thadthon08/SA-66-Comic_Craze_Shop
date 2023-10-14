@@ -97,10 +97,10 @@ function Payment_UD() {
   const handleEdit = () => {
     let updateData = {
       ID: editpayment.ID,
-      Basket_id: editpayment.Basket_id,
+      BasketID: editpayment.BasketID,
       Date: editpayment.Date,
       Image: editpayment.Image,
-      Status_id: selectedStatus,
+      StatusID: selectedStatus,
     };
     console.log(updateData);
     const apiUrl = `http://localhost:8080/Payment`;
@@ -169,7 +169,7 @@ function Payment_UD() {
     // setEditId(val.ID);
     seteditPayment({
       ID: val.ID,
-      Basket_id: val.Basket_id,
+      BasketID: val.BasketID,
       Date: val.Date,
       Image: val.Image,
       // Status_id: val.Status_id,
@@ -187,7 +187,7 @@ function Payment_UD() {
       align: "center",
     },
     {
-      field: "Basket_id",
+      field: "BasketID",
       headerName: "ตะกร้าสิ้นค้า",
       width: 150,
       headerAlign: "center",

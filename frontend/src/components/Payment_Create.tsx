@@ -46,8 +46,8 @@ function Payment_Create() {
       Date: date,
       // Image: imageString,
       Image: profile?.thumbUrl,
-      Basket_id: 1,
-      Status_id: 2,
+      BasketID: 1,
+      StatusID: 2,
     };
 
     if (!profile) {

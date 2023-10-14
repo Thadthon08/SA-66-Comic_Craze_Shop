@@ -19,12 +19,12 @@ func CreatePayment(c *gin.Context) {
 		return
 	}
 
-	if tx := entity.DB().Where("id = ?", payment.Basket_id).First(&basket); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("id = ?", payment.BasketID).First(&basket); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "ไม่พบตะกร้าสิ้นค้า"})
 		return
 	}
 
-	if tx := entity.DB().Where("id = ?", payment.Status_id).First(&status); tx.RowsAffected == 0 {
+	if tx := entity.DB().Where("id = ?", payment.StatusID).First(&status); tx.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "ไม่มี Status"})
 		return
 	}

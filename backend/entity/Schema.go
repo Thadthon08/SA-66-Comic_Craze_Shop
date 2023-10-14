@@ -11,10 +11,10 @@ type Appove struct {
 	gorm.Model
 	Note string
 
-	Admin_id *uint
+	AdminID *uint
 	Admin Admin  `gorm:"references:id"`
 
-	Payment_id *uint
+	PaymentID *uint
 	Payment Payment   `gorm:"references:id"`
 
 
@@ -25,20 +25,20 @@ type Payment struct {
 	Image       string `gorm:"type:longtext"`
 	Date      time.Time
 
-	Basket_id *uint
+	BasketID *uint
 	Basket Basket `gorm:"references:id"`
 
-	Status_id *uint
+	StatusID *uint
 	Status 	Status `gorm:"references:id"`
 	
-	Appove []Appove `gorm:"foreignKey:Payment_id"`
+	Appove []Appove `gorm:"foreignKey:PaymentID"`
 }
 
 type Status struct {
 	gorm.Model
 	Status string
 
-	Payment []Payment `gorm:"foreignKey:Status_id"`
+	Payment []Payment `gorm:"foreignKey:StatusID"`
 
 
 }
@@ -48,21 +48,21 @@ type Admin struct {
 	Email string
 	Password string
 
-	Appove []Appove `gorm:"foreignKey:Admin_id"`
-	Comic []Comic `gorm:"foreignKey:Admin_id"`
+	Appove []Appove `gorm:"foreignKey:AdminID"`
+	Comic []Comic `gorm:"foreignKey:AdminID"`
 
 }
 type Basket struct {
 	gorm.Model
 	Total float64
 
-	Member_id *uint
+	MemberID *uint
 	Member Member  `gorm:"references:id"`
 
-	Comic_id *uint
+	ComicID *uint
 	Comic Comic  	`gorm:"references:id"`
 
-	Payment []Payment `gorm:"foreignKey:Basket_id"`
+	Payment []Payment `gorm:"foreignKey:BasketID"`
 	
 }
 
@@ -72,16 +72,16 @@ type Member struct {
 	Username string
 	Password string
 
-	Gender_id *uint
+	GenderID *uint
 	Gender Gender  	`gorm:"references:id"`
-	Basket []Basket `gorm:"foreignKey:Member_id"`
+	Basket []Basket `gorm:"foreignKey:MemberID"`
 }
 
 type Gender struct {
 	gorm.Model
 	Name string
 
-	Member []Member `gorm:"foreignKey:Gender_id"`
+	Member []Member `gorm:"foreignKey:GenderID"`
 
 }
 
@@ -96,11 +96,11 @@ type Comic struct {
 	CategoryID *uint
 	Category Category `gorm:"foreignKey:CategoryID"`
 
-	Admin_id *uint
+	AdminID *uint
 	Admin Admin  `gorm:"references:id"`
 
-	Basket []Basket `gorm:"foreignKey:Comic_id"`
-	Review []Review `gorm:"foreignKey:Comic_id"`
+	Basket []Basket `gorm:"foreignKey:ComicID"`
+	Review []Review `gorm:"foreignKey:ComicID"`
 	
 }
 // type Comic struct {
@@ -128,10 +128,10 @@ type Review struct {
 	gorm.Model
 	Comment string
 
-	Comic_id *uint
+	ComicID *uint
 	Comic Comic  `gorm:"references:id"`
 
-	Rating_id *uint
+	RatingID *uint
 	Rating Rating  `gorm:"references:id"`
 }
 
@@ -139,5 +139,5 @@ type Rating struct {
 	gorm.Model
 	Score uint
 
-	Review []Review  `gorm:"foreignKey:Rating_id"`
+	Review []Review  `gorm:"foreignKey:RatingID"`
 }

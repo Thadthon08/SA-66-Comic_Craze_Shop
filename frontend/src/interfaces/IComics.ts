@@ -12,6 +12,6 @@ export interface ComicsInterface {
   CategoryID?: number;
   Category?: CategoryInterface;
 
-  Admin_id?: number;
+  AdminID?: number;
   Admin?: AdminInterface;
 }

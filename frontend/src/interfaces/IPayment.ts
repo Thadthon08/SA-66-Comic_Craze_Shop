@@ -6,9 +6,9 @@ export interface PaymentInterface {
   Image: string;
   Date?: Date | null;
 
-  Basket_id?: number;
+  BasketID?: number;
   Basket?: BasketInterface;
 
-  Status_id?: number;
+  StatusID?: number;
   Status?: StatusInterface;
 }

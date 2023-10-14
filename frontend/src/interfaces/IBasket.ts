@@ -5,7 +5,7 @@ export interface BasketInterface {
   ID?: number;
   Total?: number;
 
-  Member_id?: number;
+  MemberID?: number;
   Member?: MemberInterface;
 
   ComicID?: number;
