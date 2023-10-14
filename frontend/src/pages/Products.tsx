@@ -1,62 +1,143 @@
-import React, { useState, ReactNode } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
-import Chainsawman from "../img/chainsaw_man.jpg";
-import { Link } from "react-router-dom";
-import book1 from "../img/chainsaw_man.jpg";
-import book2 from "../img/dragonball.jpg";
-import { Image } from "antd";
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import {
+  Layout,
+  Card,
+  List,
+  Image,
+  Typography,
+  Rate,
+  Button,
+  Tag,
+  Space,
+  Form,
+} from "antd";
+import { GetComic, GetCategory } from "../services/http";
+import { ComicsInterface } from "../interfaces/IComics";
+import { CategoryInterface } from "../interfaces/ICategory";
+import { NavLink, useNavigate } from "react-router-dom";
 
-function Products() {
+const { Meta } = Card;
+const { Content } = Layout;
+
+const contentStyle: React.CSSProperties = {
+  minHeight: 720,
+  lineHeight: "120px",
+  backgroundColor: "white",
+};
+
+const itemCardImage: React.CSSProperties = {
+  height: "180px",
+  objectFit: "scale-down",
+};
+
+const Products: React.FC = () => {
+  const [comics, setComics] = useState<ComicsInterface[]>([]);
+  const [categories, setCategories] = useState<CategoryInterface[]>([]);
+
+  const getComics = async () => {
+    let res = await GetComic();
+    if (res) {
+      setComics(res);
+    }
+  };
+
+  const getCategories = async () => {
+    let res = await GetCategory();
+    if (res) {
+      setCategories(res);
+    }
+  };
+
+  useEffect(() => {
+    getComics();
+    getCategories();
+  }, []);
+
+  const navigate = useNavigate();
+
   return (
     <>
       <Header />
       <Navbar />
-      <section>
-        {/* PRODUCT */}
-        <h1 className="my-10 flex justify-center items-center capitalize text-3xl font-bold">
-          Header
-        </h1>
-        <div className="mt-6 flex justify-center items-center gap-y-8  lg:gap-x-16 h-50">
-          {/* IMAGE */}
-          <Image
-            preview={false}
-            src={book1}
-            width={450}
-            className="object-cover rounded-lg lg:w-full"
-          />
-          {/* PRODUCT */}
-          <div>
-            <h4 className="text-xl  font-bold mt-2">
-              Test
-            </h4>
-            <p className="mt-3 text-xl">$20</p>
-            <p className="mt-6 leading-8">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-            </p>
-            {/* COLORS */}
-            <div className="mt-6">
-              <h4 className="text-md font-medium tracking-wider capitalize">
-                colors
-              </h4>
-            </div>
-            {/* AMOUNT */}
-            <div className="form-control w-full max-w-xs">
-              <label className="label" htmlFor="amount">
-                <h4 className="text-md font-medium -tracking-wider capitalize">
-                  Price
-                </h4>
-              </label>
-            </div>
-            {/* CART BTN */}
-            <div className="mt-10">
-              <button className="btn btn-secondary btn-md">Add to bag</button>
-            </div>
+      <Form>
+        <Content style={contentStyle}>
+          <div
+            style={{ textAlign: "center", color: "black", fontSize: "30px" }}
+          >
+            <h1>Products</h1>
           </div>
-        </div>
-      </section>
+          <div>
+            <List
+              grid={{ gutter: 30, column: 4 }}
+              dataSource={comics}
+              renderItem={(comic) => (
+                <List.Item className="">
+                  <Card
+                    hoverable
+                    className=""
+                    cover={
+                      <img
+                        style={itemCardImage}
+                        src={comic.Image}
+                        alt={comic.Title}
+                        onClick={() => navigate(`/ProfileComic/${comic.ID}`)}
+                      />
+                    }
+                    actions={[
+                      <Rate value={3} />,
+                      <Button
+                        key={comic.ID}
+                        style={{
+                          backgroundColor: "#29ce2e",
+                          color: "white",
+                          width: 90,
+                          height: 38,
+                        }}
+                      >
+                        ฿ {comic.Price}
+                      </Button>,
+                    ]}
+                  >
+                    <Meta title={comic.Title} />
+                    <Space>
+                      {/* Display categories as tags */}
+                      {categories
+                        .filter((category) => category.ID === comic.CategoryID)
+                        .map((selectedCategory) => (
+                          <Tag className="my-4" key={selectedCategory.ID}>
+                            {selectedCategory.Name}
+                          </Tag>
+                        ))}
+                    </Space>
+                    <Card.Meta
+                      description={
+                        <Typography.Paragraph
+                          ellipsis={{
+                            rows: 2,
+                            expandable: true,
+                            symbol: "more",
+                          }}
+                        >
+                          {comic.Description}
+                        </Typography.Paragraph>
+                      }
+                    />
+                  </Card>
+                </List.Item>
+              )}
+            />
+          </div>
+        </Content>
+      </Form>
     </>
   );
-}
+};
 
 export default Products;

@@ -93,8 +93,8 @@ type Comic struct {
 	Url string 
 	Price float64
 
-	Category_id *uint
-	Category Category `gorm:"references:id"`
+	CategoryID *uint
+	Category Category `gorm:"foreignKey:CategoryID"`
 
 	Admin_id *uint
 	Admin Admin  `gorm:"references:id"`
@@ -103,12 +103,24 @@ type Comic struct {
 	Review []Review `gorm:"foreignKey:Comic_id"`
 	
 }
+// type Comic struct {
+// 	gorm.Model
+// 	Title       string
+// 	Description string
+// 	Url         string
+// 	Price       float32
+// 	Image       string `gorm:"type:longtext"`
+
+// 	// CategoryID ทำหน้าที่เป็น FK
+// 	CategoryID *uint
+// 	Category   Category `gorm:"foreignKey:CategoryID"`
+// }
 
 type Category struct {
 	gorm.Model
 	Name string
 	
-	Comic []Comic `gorm:"foreignKey:Category_id"`
+	Comic []Comic `gorm:"foreignKey:CategoryID"`
 
 }
 

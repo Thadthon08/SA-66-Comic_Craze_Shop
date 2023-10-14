@@ -15,8 +15,13 @@ import {
   SingleProduct,
   Payment_Show,
   Payment_UD,
+  AddProduct,
+  Member,
+  DataComic,
+  Admin,
+  EditProduct,
+  ProfileComic,
 } from "./pages";
-
 
 const App = () => {
   return (
@@ -34,7 +39,14 @@ const App = () => {
         <Route path="/Orders" element={<Orders />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/Status/admin" element={<Payment_UD />} />
+        <Route path="/Approve" element={<Payment_UD />} />
+        {/* Admin */}
+        <Route path="/AddProduct" element={<AddProduct />} />
+        <Route path="/Member" element={<Member />} />
+        <Route path="/DataComic" element={<DataComic />} />
+        <Route path="/Admin" element={<Admin />} />
+        <Route path="/EditProduct/:id" element={<EditProduct />} />
+        <Route path="/ProfileComic/:id" element={<ProfileComic />} />
       </Routes>
     </Router>
   );

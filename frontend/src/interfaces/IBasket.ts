@@ -1,13 +1,13 @@
 import { MemberInterface } from "./IMember";
-import {ComicInterface} from "./IComic";
+import { ComicsInterface } from "./IComics";
 
 export interface BasketInterface {
-  ID?: number,
-  Total?: number,
+  ID?: number;
+  Total?: number;
 
-  Member_id?: number
-  Member?: MemberInterface
+  Member_id?: number;
+  Member?: MemberInterface;
 
-  Comic_id?: number
-  Comic ?: ComicInterface
+  ComicID?: number;
+  Comic?: ComicsInterface;
 }
