@@ -3,26 +3,6 @@ import {ComicsInterface} from '../../interfaces/IComics'
 
 const apiUrl = "http://localhost:8080";
 
-// async function GetPayment() {
-//   const requestOptions = {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   };
-
-//   let res = await fetch(`${apiUrl}/Payments`, requestOptions)
-//     .then((response) => response.json())
-//     .then((res) => {
-//       if (res.data) {
-//         return res.data;
-//       } else {
-//         return false;
-//       }
-//     });
-
-//   return res;
-// }
 async function GetPayment() {
   const requestOptions = {
     method: "GET",
@@ -259,8 +239,28 @@ async function UpdateComic(data: ComicsInterface) {
 
   return res;
 }
+// ***********************************************************
+// Basket 
+async function GetBasket() {
+  const requestOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
 
+  let res = await fetch(`${apiUrl}/basket`, requestOptions)
+    .then((response) => response.json())
+    .then((res) => {
+      if (res.data) {
+        return res.data;
+      } else {
+        return false;
+      }
+    });
 
+  return res;
+}
 export {
   CreatePayment,
   GetPayment,
@@ -274,4 +274,5 @@ export {
   CreateComic,
   UpdateComic,
   GetCategoryByID,
+  GetBasket,
 };

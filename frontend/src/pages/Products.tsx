@@ -66,76 +66,84 @@ const Products: React.FC = () => {
     <>
       <Header />
       <Navbar />
-      <Form>
-        <Content style={contentStyle}>
-          <div
-            style={{ textAlign: "center", color: "black", fontSize: "30px" }}
-          >
-            <h1>Products</h1>
-          </div>
-          <div>
-            <List
-              grid={{ gutter: 30, column: 4 }}
-              dataSource={comics}
-              renderItem={(comic) => (
-                <List.Item className="">
-                  <Card
-                    hoverable
-                    className=""
-                    cover={
-                      <img
-                        style={itemCardImage}
-                        src={comic.Image}
-                        alt={comic.Title}
-                        onClick={() => navigate(`/ProfileComic/${comic.ID}`)}
-                      />
-                    }
-                    actions={[
-                      <Rate value={3} />,
-                      <Button
-                        key={comic.ID}
-                        style={{
-                          backgroundColor: "#29ce2e",
-                          color: "white",
-                          width: 90,
-                          height: 38,
-                        }}
-                      >
-                        ฿ {comic.Price}
-                      </Button>,
-                    ]}
-                  >
-                    <Meta title={comic.Title} />
-                    <Space>
-                      {/* Display categories as tags */}
-                      {categories
-                        .filter((category) => category.ID === comic.CategoryID)
-                        .map((selectedCategory) => (
-                          <Tag className="my-4" key={selectedCategory.ID}>
-                            {selectedCategory.Name}
-                          </Tag>
-                        ))}
-                    </Space>
-                    <Card.Meta
-                      description={
-                        <Typography.Paragraph
-                          ellipsis={{
-                            rows: 2,
-                            expandable: true,
-                            symbol: "more",
+      <div className="m-10 border">
+        <Form>
+          <Content style={contentStyle}>
+            <div
+              style={{
+                textAlign: "center",
+                color: "black",
+                fontSize: "45px",
+                fontWeight: "bold",
+              }}
+            >
+              <h1>Products</h1>
+            </div>
+            <div>
+              <List
+                grid={{ gutter: 30, column: 4 }}
+                dataSource={comics}
+                renderItem={(comic) => (
+                  <List.Item className="m-5">
+                    <Card
+                      hoverable
+                      cover={
+                        <img
+                          style={itemCardImage}
+                          src={comic.Image}
+                          alt={comic.Title}
+                          onClick={() => navigate(`/ProfileComic/${comic.ID}`)}
+                        />
+                      }
+                      actions={[
+                        <Rate value={3} />,
+                        <Button
+                          key={comic.ID}
+                          style={{
+                            backgroundColor: "#29ce2e",
+                            color: "white",
+                            width: 90,
+                            height: 38,
                           }}
                         >
-                          {comic.Description}
-                        </Typography.Paragraph>
-                      }
-                    />
-                  </Card>
-                </List.Item>
-              )}
-            />
-          </div>
-        </Content>
-      </Form>
+                          ฿ {comic.Price}
+                        </Button>,
+                      ]}
+                    >
+                      <Meta title={comic.Title} />
+                      <Space>
+                        {/* Display categories as tags */}
+                        {categories
+                          .filter(
+                            (category) => category.ID === comic.CategoryID
+                          )
+                          .map((selectedCategory) => (
+                            <Tag className="my-4" key={selectedCategory.ID}>
+                              {selectedCategory.Name}
+                            </Tag>
+                          ))}
+                      </Space>
+                      <Card.Meta
+                        description={
+                          <Typography.Paragraph
+                            ellipsis={{
+                              rows: 2,
+                              expandable: true,
+                              symbol: "more",
+                            }}
+                          >
+                            {comic.Description}
+                          </Typography.Paragraph>
+                        }
+                      />
+                    </Card>
+                  </List.Item>
+                )}
+              />
+            </div>
+          </Content>
+        </Form>
+      </div>
     </>
   );
 };

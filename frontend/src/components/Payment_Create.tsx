@@ -17,20 +17,6 @@ function Payment_Create() {
   const [Basket, setBasket] = React.useState<BasketInterface[]>([]);
   const [payment, setPayment] = React.useState<PaymentInterface>();
 
-  // const [imageString, setImageString] = React.useState<
-  //   string | ArrayBuffer | null>(null);
-  // กำหนดตัวแปร state 'imageString' สำหรับเก็บข้อมูลรูปภาพ
-
-  // ฟังก์ชัน 'handleImageChange' สำหรับการเลือกไฟล์รูปภาพ
-  // const handleImageChange = (event: any) => {
-  //   const image = event.target.files[0]; // รับไฟล์รูปที่ถูกเลือก
-  //   const reader = new FileReader(); // สร้างออบเจกต์ FileReader
-  //   reader.readAsDataURL(image); // อ่านไฟล์รูปเป็น URL ข้อมูล
-  //   reader.onload = () => {
-  //     const base64Data = reader.result; // รับข้อมูลรูปภาพในรูปแบบ base64
-  //     setImageString(base64Data); // ให้ state 'imageString' เป็นข้อมูลรูปภาพในรูปแบบ base64
-  //   };
-  // };
 
   const normFile = (e: any) => {
     if (Array.isArray(e)) {
@@ -65,7 +51,7 @@ function Payment_Create() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data), // แปลงออบเจกต์ 'data' เป็น JSON และตั้งค่าให้
+      body: JSON.stringify(data), 
     };
 
     // ส่งคำขอ POST ไปยัง API
@@ -79,7 +65,7 @@ function Payment_Create() {
             icon: "success",
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = "/Payment/Status"; // นำผู้ใช้ไปยังหน้า "/Payment/Status" หลังจากการยืนยัน
+              window.location.href = "/Payment/Status"; // ไปยังหน้า "/Payment/Status" หลังจากการยืนยัน
             }
           });
         } else {
@@ -113,13 +99,6 @@ function Payment_Create() {
           />
         </LocalizationProvider>
       </Form.Item>
-      {/* <Form.Item name="Image" getValueFromEvent={handleImageChange}>
-        <input
-          type="file" // ประเภทของอินพุตสำหรับการเลือกไฟล์
-          className="file-input file-input-bordered w-full max-w-xs"
-          // onChange={handleImageChange}  เรียกใช้ 'handleImageChange' 
-        />
-      </Form.Item> */}
       <div className="border-b border-base-300 pb-2"></div>
       <Form.Item name="Image" valuePropName="fileList">
         <h5
@@ -148,4 +127,4 @@ function Payment_Create() {
   );
 }
 
-export default Payment_Create; // ส่งออก PaymentComponent เป็นค่าเริ่มต้น (default export)
+export default Payment_Create; 

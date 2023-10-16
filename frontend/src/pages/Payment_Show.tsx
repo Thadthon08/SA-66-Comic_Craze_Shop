@@ -11,32 +11,19 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import moment from "moment";
+import { GetPayment } from "../services/http";
 
 import { PaymentInterface } from "../interfaces/IPayment";
 
 function Payment_Show() {
   const [payment, setPayment] = React.useState<PaymentInterface[]>([]);
 
-  // โหลดข้อมูลทั้งหมดใส่ datagrid
+  // ฟังก์ชันโหลดข้อมูล Payment จาก API
   const getPayment = async () => {
-    const apiUrl = "http://localhost:8080/Payments";
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        // Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
-      },
-    };
-    await fetch(apiUrl, requestOptions)
-      .then((response) => response.json())
-      .then((res) => {
-        if (res.data) {
-          console.log(res.data);
-          setPayment(res.data);
-        } else {
-          console.log("Table Payment Show Error");
-        }
-      });
+    let res = await GetPayment();
+    if (res) {
+      setPayment(res);
+    }
   };
   useEffect(() => {
     getPayment();
@@ -90,7 +77,7 @@ function Payment_Show() {
     <>
       <Header />
       <Navbar />
-      <div className="bg-base-200 h-screen p-14">
+      <div className="h-screen p-14">
         <Container maxWidth="lg">
           <Box display="flex">
             <Box flexGrow={1}>
@@ -115,7 +102,14 @@ function Payment_Show() {
               </Button>
             </Box>
           </Box>
-          <div style={{ height: 400, width: "100%", marginTop: "20px", background:"white"}} >
+          <div
+            style={{
+              height: 400,
+              width: "100%",
+              marginTop: "20px",
+              background: "white",
+            }}
+          >
             <DataGrid
               rows={payment}
               getRowId={(row) => row.ID}

@@ -132,27 +132,6 @@ function Payment_UD() {
       });
   };
 
-  // const handleEdit = async (value: PaymentInterface) => {
-  //   value.Status_id = editId;
-  //   const res = await UpdatePayment(value);
-  //   if (res) {
-  //     setEditPopupOpen(false);
-  //     Swal.fire({
-  //       title: "แก้ไขข้อมูลสำเร็จ",
-  //       icon: "success",
-  //     });
-  //     // setTimeout(function () {
-  //     //   navigate("/Home");
-  //     // }, 2000);
-  //   } else {
-  //     setEditPopupOpen(false);
-  //     Swal.fire({
-  //       title: "เกิดข้อผิดพลาด",
-  //       icon: "error",
-  //     });
-  //   }
-  // };
-
   // ฟังก์ชันเรียกใช้เมื่อคลิกที่รูปภาพ
   const handleImageClick = (imageUrl: any) => {
     setSelectedImage(imageUrl);
@@ -371,23 +350,18 @@ function Payment_UD() {
       </Dialog>
       <Header />
       <Navbar />
-      <div className="bg-base-200 h-screen p-14">
+      <div className="h-screen p-14">
         <Container maxWidth="lg">
           <Box display="flex">
             <Box flexGrow={1}>
-              <Typography
-                className="text-center"
-                variant="h3"
-                color="rgb(57, 78, 106)"
-                gutterBottom
-              >
+              <Typography className="text-center" variant="h3" gutterBottom>
                 History Payments
               </Typography>
             </Box>
             <Box sx={{ paddingX: 1, paddingY: 0 }}>
               <Button
                 component={RouterLink}
-                to="/Cart"
+                to="/AddProduct"
                 variant="contained"
                 color="primary"
                 startIcon={<ArrowBackIcon />}
@@ -396,7 +370,10 @@ function Payment_UD() {
               </Button>
             </Box>
           </Box>
-          <div style={{ height: 400, width: "100%", marginTop: "20px" }}>
+          <div
+            className="bg-base-100"
+            style={{ height: 400, width: "100%", marginTop: "20px" }}
+          >
             <DataGrid
               rows={payment}
               getRowId={(row) => row.ID}

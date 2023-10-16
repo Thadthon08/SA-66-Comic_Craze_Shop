@@ -7,19 +7,6 @@ import (
 	"gorm.io/gorm"
 )
 
-type Appove struct {
-	gorm.Model
-	Note string
-
-	AdminID *uint
-	Admin Admin  `gorm:"references:id"`
-
-	PaymentID *uint
-	Payment Payment   `gorm:"references:id"`
-
-
-
-}
 type Payment struct {
 	gorm.Model
 	Image       string `gorm:"type:longtext"`
@@ -33,23 +20,12 @@ type Payment struct {
 	
 	Appove []Appove `gorm:"foreignKey:PaymentID"`
 }
-
 type Status struct {
 	gorm.Model
 	Status string
 
 	Payment []Payment `gorm:"foreignKey:StatusID"`
 
-
-}
-
-type Admin struct {
-	gorm.Model
-	Email string
-	Password string
-
-	Appove []Appove `gorm:"foreignKey:AdminID"`
-	Comic []Comic `gorm:"foreignKey:AdminID"`
 
 }
 type Basket struct {
@@ -65,7 +41,6 @@ type Basket struct {
 	Payment []Payment `gorm:"foreignKey:BasketID"`
 	
 }
-
 type Member struct {
 	gorm.Model
 	Email string
@@ -76,6 +51,29 @@ type Member struct {
 	Gender Gender  	`gorm:"references:id"`
 	Basket []Basket `gorm:"foreignKey:MemberID"`
 }
+type Appove struct {
+	gorm.Model
+	Note string
+
+	AdminID *uint
+	Admin Admin  `gorm:"references:id"`
+
+	PaymentID *uint
+	Payment Payment   `gorm:"references:id"`
+
+}
+
+
+type Admin struct {
+	gorm.Model
+	Email string
+	Password string
+
+	Appove []Appove `gorm:"foreignKey:AdminID"`
+	Comic []Comic `gorm:"foreignKey:AdminID"`
+
+}
+
 
 type Gender struct {
 	gorm.Model
@@ -103,18 +101,6 @@ type Comic struct {
 	Review []Review `gorm:"foreignKey:ComicID"`
 	
 }
-// type Comic struct {
-// 	gorm.Model
-// 	Title       string
-// 	Description string
-// 	Url         string
-// 	Price       float32
-// 	Image       string `gorm:"type:longtext"`
-
-// 	// CategoryID ทำหน้าที่เป็น FK
-// 	CategoryID *uint
-// 	Category   Category `gorm:"foreignKey:CategoryID"`
-// }
 
 type Category struct {
 	gorm.Model

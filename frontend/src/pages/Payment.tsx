@@ -1,15 +1,11 @@
-import React, { MouseEvent, FormEvent, ChangeEvent, useState } from "react";
+import React, { MouseEvent } from "react";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import PaymentComponent from "../components/Payment_Create";
+import Totalprice from "../components/Totalprice";
 
 const Payment = () => {
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    sweetAlert("Suscess", "รอการยืนยันภายใน 24 ชม.", "suscess");
-  };
-  // const [value, setValue] = React.useState<Dayjs | null>(dayjs(""));
-
   return (
     <>
       <Header />
@@ -43,30 +39,7 @@ const Payment = () => {
           <PaymentComponent />
         </div>
         <div>
-          <div className="card w-96  bg-base-100 shadow-lg flex flex-col gap-y-4 ml-14">
-            <div className="card-body">
-              {/* SUBTOTAL */}
-              <p className="flex justify-between text-xs border-b border-base-300 pb-2">
-                <span>Subtotal</span>
-                <span className="font-medium">179.99</span>
-              </p>
-              {/* SHIPPING */}
-              <p className="flex justify-between text-xs border-b border-base-300 pb-2">
-                <span>Shipping</span>
-                <span className="font-medium">5.00</span>
-              </p>
-              {/* Tax */}
-              <p className="flex justify-between text-xs border-b border-base-300 pb-2">
-                <span>Tax</span>
-                <span className="font-medium">18.00</span>
-              </p>
-              {/* Order Total */}
-              <p className="flex justify-between text-sm mt-4 pb-2">
-                <span>Order Total</span>
-                <span className="font-medium">209.00</span>
-              </p>
-            </div>
-          </div>
+          <Totalprice />
           <div className="text ml-14">
             <p className="text-sm  p-5">
               <strong>ขั้นตอนการชำระเงิน !!!</strong>

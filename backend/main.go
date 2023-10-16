@@ -33,6 +33,7 @@ func main() {
 	r.GET("/category", controller.ListCategory)
 	r.GET("/category/:id", controller.GetCategory)
 
+	r.GET("/basket", controller.GetBasket)
 	r.Run()
 }
 
