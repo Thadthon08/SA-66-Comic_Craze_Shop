@@ -11,4 +11,5 @@ export interface PaymentInterface {
 
   StatusID?: number;
   Status?: StatusInterface;
+
 }

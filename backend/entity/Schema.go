@@ -23,10 +23,28 @@ type Payment struct {
 type Status struct {
 	gorm.Model
 	Status string
-
+	
 	Payment []Payment `gorm:"foreignKey:StatusID"`
+	
+	
+}
+type Comic struct {
+	gorm.Model
+	Image string  `gorm:"type:longtext"`
+	Title string
+	Description string
+	Url string 
+	Price float64
 
+	CategoryID *uint
+	Category Category `gorm:"foreignKey:CategoryID"`
 
+	AdminID *uint
+	Admin Admin  `gorm:"references:id"`
+
+	Basket []Basket `gorm:"foreignKey:ComicID"`
+	Review []Review `gorm:"foreignKey:ComicID"`
+	
 }
 type Basket struct {
 	gorm.Model
@@ -83,24 +101,6 @@ type Gender struct {
 
 }
 
-type Comic struct {
-	gorm.Model
-	Image string  `gorm:"type:longtext"`
-	Title string
-	Description string
-	Url string 
-	Price float64
-
-	CategoryID *uint
-	Category Category `gorm:"foreignKey:CategoryID"`
-
-	AdminID *uint
-	Admin Admin  `gorm:"references:id"`
-
-	Basket []Basket `gorm:"foreignKey:ComicID"`
-	Review []Review `gorm:"foreignKey:ComicID"`
-	
-}
 
 type Category struct {
 	gorm.Model

@@ -14,7 +14,7 @@ func main() {
 
 	r.Use(CORSMiddleware())
 
-	//Payment 
+	//Payment
 	r.POST("/Payment", controller.CreatePayment)
 	r.GET("/Payment/:id", controller.GetPayment)
 	r.GET("/Payments", controller.ListPayment)

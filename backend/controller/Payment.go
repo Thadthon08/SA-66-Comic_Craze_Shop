@@ -48,15 +48,35 @@ func CreatePayment(c *gin.Context) {
 }
 
 // GET /Payment/:id
-func GetPayment(c *gin.Context) {
-	var payment entity.Payment
-	id := c.Param("id")
-	if err := entity.DB().Preload("Basket").Raw("SELECT * FROM payments WHERE id = ?", id).Find(&payment).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
+
+	func GetPayment(c *gin.Context) {
+		var payment entity.Payment
+		id := c.Param("id")
+		if err := entity.DB().Preload("Basket").Raw("SELECT * FROM payments WHERE id = ?", id).Find(&payment).Error; err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+		c.JSON(http.StatusOK, gin.H{"data": payment})
 	}
-	c.JSON(http.StatusOK, gin.H{"data": payment})
-}
+// func GetPayment(c *gin.Context) {
+// 	var payment []entity.Payment
+// 	// id := c.Param("id")
+
+// 	if err := entity.DB().Table("payments").
+// 		Select("payments.*, baskets.total, comics.title, statuses.status").
+// 		Joins("JOIN baskets ON payments.basket_id = baskets.id").
+// 		Joins("JOIN comics ON baskets.comic_id = comics.id").
+// 		Joins("JOIN statuses ON payments.status_id = statuses.id").
+// 		// Where("payments.id = ?", id).
+// 		Scan(&payment).Error; err != nil {
+// 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+// 		return
+// 	}
+
+// 	c.JSON(http.StatusOK, gin.H{"data": payment})
+// }
+
+
 
 // GET /payment
 func ListPayment(c *gin.Context) {
@@ -83,7 +103,6 @@ func DeletePayment(c *gin.Context) {
 func UpdatePayment(c *gin.Context) {
 	var payment entity.Payment
 	var result entity.Payment
-	
 
 	if err := c.ShouldBindJSON(&payment); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

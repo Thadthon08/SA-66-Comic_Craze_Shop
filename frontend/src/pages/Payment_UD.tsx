@@ -161,21 +161,14 @@ function Payment_UD() {
     {
       field: "ID",
       headerName: "ID",
-      width: 70,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "BasketID",
-      headerName: "ตะกร้าสิ้นค้า",
-      width: 150,
+      width: 100,
       headerAlign: "center",
       align: "center",
     },
     {
       field: "Basket",
       headerName: "ยอดรวม",
-      width: 150,
+      width: 200,
       headerAlign: "center",
       align: "center",
       valueFormatter: (params) => params.value.Total,
@@ -183,7 +176,7 @@ function Payment_UD() {
     {
       field: "Date",
       headerName: "วันที่ชำระสินค้า",
-      width: 200,
+      width: 250,
       headerAlign: "center",
       align: "center",
       renderCell: (params) =>

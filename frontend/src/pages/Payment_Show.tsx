@@ -33,23 +33,15 @@ function Payment_Show() {
     {
       field: "ID",
       headerName: "ID",
-      width: 100,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "BasketID",
-      headerName: "ตะกร้าสิ้นค้า",
       width: 200,
       headerAlign: "center",
       align: "center",
-      headerClassName: "green1",
       // valueFormatter: (params) => params.value.id,
     },
     {
       field: "Basket",
       headerName: "ยอดรวม",
-      width: 200,
+      width: 300,
       headerAlign: "center",
       align: "center",
       valueFormatter: (params) => params.value.Total,
@@ -66,7 +58,7 @@ function Payment_Show() {
     {
       field: "Status",
       headerName: "สถานะ",
-      width: 250,
+      width: 350,
       headerAlign: "center",
       align: "center",
       valueFormatter: (params) => params.value.Status,
